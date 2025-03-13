@@ -24,6 +24,20 @@ const Header = () => {
     };
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    setIsMobileMenuOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleConsultation = () => {
+    scrollToSection("contact");
+    // Add analytics tracking if needed
+    console.log("Consultation button clicked");
+  };
+
   return (
     <header 
       className={cn(
@@ -48,22 +62,31 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          {["About", "Services", "Portfolio", "Blog", "Contact"].map((item) => (
-            <a 
-              key={item} 
-              href={`#${item.toLowerCase()}`}
+          {[
+            { name: "About", id: "about" },
+            { name: "Services", id: "services" }, 
+            { name: "Portfolio", id: "portfolio" }, 
+            { name: "Blog", id: "blog" }, 
+            { name: "Contact", id: "contact" }
+          ].map((item) => (
+            <button 
+              key={item.name} 
+              onClick={() => scrollToSection(item.id)}
               className={cn(
                 "underline-animation font-medium transition-colors duration-300",
                 isScrolled ? "text-nuevanex-dark" : "text-white"
               )}
             >
-              {item}
-            </a>
+              {item.name}
+            </button>
           ))}
         </nav>
 
         <div className="hidden md:block">
-          <Button className="bg-nuevanex-red hover:bg-nuevanex-red/90 text-white">
+          <Button 
+            className="bg-nuevanex-red hover:bg-nuevanex-red/90 text-white"
+            onClick={handleConsultation}
+          >
             Get Free Consultation
           </Button>
         </div>
@@ -81,18 +104,26 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg">
           <nav className="flex flex-col py-4">
-            {["About", "Services", "Portfolio", "Blog", "Contact"].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`}
-                className="px-6 py-3 text-nuevanex-dark hover:bg-nuevanex-light transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
+            {[
+              { name: "About", id: "about" },
+              { name: "Services", id: "services" }, 
+              { name: "Portfolio", id: "portfolio" }, 
+              { name: "Blog", id: "blog" }, 
+              { name: "Contact", id: "contact" }
+            ].map((item) => (
+              <button 
+                key={item.name} 
+                onClick={() => scrollToSection(item.id)}
+                className="px-6 py-3 text-nuevanex-dark hover:bg-nuevanex-light transition-colors text-left"
               >
-                {item}
-              </a>
+                {item.name}
+              </button>
             ))}
             <div className="px-6 py-3">
-              <Button className="w-full bg-nuevanex-red hover:bg-nuevanex-red/90 text-white">
+              <Button 
+                className="w-full bg-nuevanex-red hover:bg-nuevanex-red/90 text-white"
+                onClick={handleConsultation}
+              >
                 Get Free Consultation
               </Button>
             </div>

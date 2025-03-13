@@ -49,13 +49,34 @@ const ContactSection = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    console.log("Form submitted with values:", values);
+    
+    // Show success toast
     toast({
-      title: "Contact form submitted",
-      description: "We'll get back to you as soon as possible!",
+      title: "Contact form submitted successfully!",
+      description: "Thank you for reaching out. We'll get back to you as soon as possible.",
     });
+    
+    // Reset form after submission
     form.reset();
   }
+
+  const handleSocialClick = (platform: string) => {
+    console.log(`Clicked on ${platform} social link`);
+    
+    // In a real implementation, these would navigate to actual social media profiles
+    const socialUrls: Record<string, string> = {
+      facebook: "https://facebook.com/nuevanex",
+      twitter: "https://twitter.com/nuevanex",
+      instagram: "https://instagram.com/nuevanex",
+      linkedin: "https://linkedin.com/company/nuevanex"
+    };
+    
+    // Open in new tab
+    if (socialUrls[platform]) {
+      window.open(socialUrls[platform], "_blank");
+    }
+  };
 
   return (
     <section id="contact" className="py-20 bg-white">
@@ -198,14 +219,14 @@ const ContactSection = () => {
                 <h4 className="font-medium mb-3">Follow Us</h4>
                 <div className="flex space-x-4">
                   {["facebook", "twitter", "instagram", "linkedin"].map((social) => (
-                    <a
+                    <button
                       key={social}
-                      href={`#${social}`}
+                      onClick={() => handleSocialClick(social)}
                       className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-nuevanex-red transition-colors"
                     >
                       <span className="sr-only">{social}</span>
                       <div className="w-5 h-5" />
-                    </a>
+                    </button>
                   ))}
                 </div>
               </div>

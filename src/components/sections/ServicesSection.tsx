@@ -3,42 +3,50 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { useRef, useEffect } from "react";
 import { Zap, MousePointerClick, Layers, Target, RotateCw, Rocket } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 const services = [
   {
     title: "Branding & Identity",
     description: "Logo Design, Brand Strategy, Visual Identity, Brand Guidelines",
     icon: <Layers className="h-8 w-8" />,
+    id: "branding-identity"
   },
   {
     title: "Digital Marketing",
     description: "SEO, PPC, Social Media Marketing, Content Marketing, Email Campaigns",
     icon: <Target className="h-8 w-8" />,
+    id: "digital-marketing"
   },
   {
     title: "Creative & Design",
     description: "Graphic Design, UI/UX Design, Video Production, Content Creation",
     icon: <Zap className="h-8 w-8" />,
+    id: "creative-design"
   },
   {
     title: "Media Planning & Buying",
     description: "TV, Radio, Print, Digital Ads, OOH Advertising",
     icon: <MousePointerClick className="h-8 w-8" />,
+    id: "media-planning"
   },
   {
     title: "Public Relations",
     description: "Press Releases, Media Relations, Crisis Management, Influencer Marketing",
     icon: <RotateCw className="h-8 w-8" />,
+    id: "public-relations"
   },
   {
     title: "Web Development",
     description: "Website Design, E-commerce Development, CMS Implementation, Maintenance",
     icon: <Rocket className="h-8 w-8" />,
+    id: "web-development"
   },
 ];
 
 const ServicesSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,6 +67,32 @@ const ServicesSection = () => {
       revealElements.forEach((el) => observer.unobserve(el));
     };
   }, []);
+
+  const handleLearnMore = (service: string, id: string) => {
+    // Show toast notification for now, can be updated to navigate to service details page
+    toast({
+      title: "Service Selected",
+      description: `You selected ${service}. We'll provide more details soon.`,
+    });
+    console.log(`Learn more about ${service}`);
+  };
+
+  const handleDiscoverAll = () => {
+    // Navigate to services page or expand services section
+    toast({
+      title: "Discover All Services",
+      description: "Exploring all our services. Please wait while we load the details.",
+    });
+    
+    // For now, just scroll through the services section
+    if (sectionRef.current) {
+      window.scrollBy({
+        top: 100,
+        behavior: 'smooth'
+      });
+    }
+    console.log("Discover all services clicked");
+  };
 
   return (
     <section id="services" className="py-20 relative bg-nuevanex-light overflow-hidden" ref={sectionRef}>
@@ -93,7 +127,11 @@ const ServicesSection = () => {
                   <CardDescription className="text-gray-600">{service.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button variant="link" className="text-nuevanex-red p-0 hover:underline group">
+                  <Button 
+                    variant="link" 
+                    className="text-nuevanex-red p-0 hover:underline group"
+                    onClick={() => handleLearnMore(service.title, service.id)}
+                  >
                     Learn More 
                     <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </Button>
@@ -104,7 +142,10 @@ const ServicesSection = () => {
         </div>
 
         <div className="text-center mt-12 reveal">
-          <Button className="bg-nuevanex-red hover:bg-nuevanex-red/90 text-white text-lg px-8 py-6 rounded-md relative overflow-hidden group">
+          <Button 
+            className="bg-nuevanex-red hover:bg-nuevanex-red/90 text-white text-lg px-8 py-6 rounded-md relative overflow-hidden group"
+            onClick={handleDiscoverAll}
+          >
             <span className="relative z-10">Discover All Services</span>
             <span className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
             <span className="absolute inset-0 bg-nuevanex-red/90 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left delay-75"></span>

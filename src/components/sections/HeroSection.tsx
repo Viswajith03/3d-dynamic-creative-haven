@@ -11,8 +11,32 @@ const HeroSection = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleConsultation = () => {
+    // Scroll to contact section for consultation
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+    console.log("Hero consultation button clicked");
+  };
+
+  const handleViewWorks = () => {
+    // Scroll to portfolio/works section
+    const portfolioSection = document.getElementById("portfolio");
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // If portfolio section doesn't exist yet, scroll to services as fallback
+      const servicesSection = document.getElementById("services");
+      if (servicesSection) {
+        servicesSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    console.log("View works button clicked");
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-nuevanex-dark via-nuevanex-navy to-nuevanex-dark">
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-nuevanex-dark via-nuevanex-navy to-nuevanex-dark">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-[20%] w-20 h-20 bg-nuevanex-red/20 rounded-full blur-xl animate-float"></div>
@@ -44,11 +68,18 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: "0.6s" }}>
-              <Button className="bg-nuevanex-red hover:bg-nuevanex-red/90 text-white text-lg px-8 py-6 rounded-md group transition-all duration-300 hover:translate-y-[-5px]">
+              <Button 
+                className="bg-nuevanex-red hover:bg-nuevanex-red/90 text-white text-lg px-8 py-6 rounded-md group transition-all duration-300 hover:translate-y-[-5px]"
+                onClick={handleConsultation}
+              >
                 <Zap className="mr-2 h-5 w-5 group-hover:animate-pulse" />
                 Get Free Consultation
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6 rounded-md group transition-all duration-300">
+              <Button 
+                variant="outline" 
+                className="border-white text-white hover:bg-white/10 text-lg px-8 py-6 rounded-md group transition-all duration-300"
+                onClick={handleViewWorks}
+              >
                 View Our Works
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>

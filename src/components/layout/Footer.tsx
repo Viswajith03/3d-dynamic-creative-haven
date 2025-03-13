@@ -3,8 +3,43 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email && email.includes('@') && email.includes('.')) {
+      toast({
+        title: "Newsletter Subscription Successful",
+        description: "Thank you for subscribing to our newsletter!",
+      });
+      console.log("Subscribed with email:", email);
+      setEmail("");
+    } else {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleSocialClick = (platform: string) => {
+    console.log(`Clicked on ${platform} social link`);
+    // In a real implementation, these would navigate to actual social media profiles
+  };
+
   return (
     <footer className="bg-nuevanex-dark text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
@@ -22,14 +57,14 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               {["facebook", "twitter", "instagram", "linkedin"].map((social) => (
-                <a
+                <button
                   key={social}
-                  href={`#${social}`}
+                  onClick={() => handleSocialClick(social)}
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-nuevanex-red transition-colors"
                 >
                   <span className="sr-only">{social}</span>
                   <div className="w-5 h-5" />
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -38,11 +73,21 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-3">
-              {["About Us", "Services", "Portfolio", "Team", "Blog", "Contact"].map((link) => (
-                <li key={link}>
-                  <Link to={`#${link.toLowerCase().replace(" ", "-")}`} className="text-gray-300 hover:text-white transition-colors">
-                    {link}
-                  </Link>
+              {[
+                { name: "About Us", id: "about" },
+                { name: "Services", id: "services" },
+                { name: "Portfolio", id: "portfolio" },
+                { name: "Team", id: "about" },
+                { name: "Blog", id: "blog" },
+                { name: "Contact", id: "contact" }
+              ].map((link) => (
+                <li key={link.name}>
+                  <button
+                    onClick={() => scrollToSection(link.id)}
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {link.name}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -58,11 +103,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-nuevanex-red shrink-0" />
-                <span className="text-gray-300">+91 12345 67890</span>
+                <a href="tel:+911234567890" className="text-gray-300 hover:text-white transition-colors">+91 12345 67890</a>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-nuevanex-red shrink-0" />
-                <span className="text-gray-300">info@nuevanex.com</span>
+                <a href="mailto:info@nuevanex.com" className="text-gray-300 hover:text-white transition-colors">info@nuevanex.com</a>
               </li>
             </ul>
           </div>
@@ -73,16 +118,19 @@ const Footer = () => {
             <p className="text-gray-300 mb-4">
               Subscribe to receive updates on our latest projects and marketing insights.
             </p>
-            <div className="flex space-x-2">
+            <form onSubmit={handleSubscribe} className="flex space-x-2">
               <Input 
                 type="email" 
                 placeholder="Enter your email" 
                 className="bg-white/10 border-white/20 text-white"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
-              <Button className="bg-nuevanex-red hover:bg-nuevanex-red/90 text-white">
+              <Button type="submit" className="bg-nuevanex-red hover:bg-nuevanex-red/90 text-white">
                 <ArrowRight className="h-4 w-4" />
               </Button>
-            </div>
+            </form>
           </div>
         </div>
 
