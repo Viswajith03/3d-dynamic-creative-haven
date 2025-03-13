@@ -46,11 +46,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Logo and About */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="h-10 w-10 bg-nuevanex-red rounded-sm flex items-center justify-center text-white font-bold text-lg">
-                N
-              </div>
-              <span className="font-bold text-xl">NUEVANEX</span>
+            <div className="mb-4">
+              <img 
+                src="/lovable-uploads/6f4dd44a-7253-4d40-b53a-8949ddd9f253.png" 
+                alt="Nuevanex Logo" 
+                className="h-16" 
+              />
             </div>
             <p className="text-gray-300 mb-4">
               A cutting-edge advertising and digital marketing agency based in Kochi, specializing in innovative brand strategies and creative campaigns.
@@ -78,7 +79,6 @@ const Footer = () => {
                 { name: "Services", id: "services" },
                 { name: "Portfolio", id: "portfolio" },
                 { name: "Team", id: "about" },
-                { name: "Blog", id: "blog" },
                 { name: "Contact", id: "contact" }
               ].map((link) => (
                 <li key={link.name}>

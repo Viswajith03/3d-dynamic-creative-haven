@@ -48,16 +48,12 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="h-10 w-10 bg-nuevanex-red rounded-sm flex items-center justify-center text-white font-bold text-lg">
-            N
-          </div>
-          <span className={cn(
-            "font-bold text-xl transition-colors duration-300",
-            isScrolled ? "text-nuevanex-dark" : "text-white"
-          )}>
-            NUEVANEX
-          </span>
+        <Link to="/" className="flex items-center">
+          <img 
+            src="/lovable-uploads/6f4dd44a-7253-4d40-b53a-8949ddd9f253.png" 
+            alt="Nuevanex Logo" 
+            className="h-12"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -66,7 +62,6 @@ const Header = () => {
             { name: "About", id: "about" },
             { name: "Services", id: "services" }, 
             { name: "Portfolio", id: "portfolio" }, 
-            { name: "Blog", id: "blog" }, 
             { name: "Contact", id: "contact" }
           ].map((item) => (
             <button 
@@ -108,7 +103,6 @@ const Header = () => {
               { name: "About", id: "about" },
               { name: "Services", id: "services" }, 
               { name: "Portfolio", id: "portfolio" }, 
-              { name: "Blog", id: "blog" }, 
               { name: "Contact", id: "contact" }
             ].map((item) => (
               <button 
