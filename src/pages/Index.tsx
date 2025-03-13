@@ -8,42 +8,15 @@ import ServicesSection from "@/components/sections/ServicesSection";
 import UniqueSection from "@/components/sections/UniqueSection";
 import CtaSection from "@/components/sections/CtaSection";
 import ContactSection from "@/components/sections/ContactSection";
+import { setupScrollAnimation, setupSmoothScroll } from "@/utils/scrollAnimation";
 
 const Index = () => {
   useEffect(() => {
-    const revealElements = () => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("active");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      const elements = document.querySelectorAll(".reveal");
-      elements.forEach((el) => observer.observe(el));
-    };
-
-    revealElements();
-
-    // Smooth scroll behavior for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId && targetId !== "#") {
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth'
-            });
-          }
-        }
-      });
-    });
+    // Set up scroll animations and smooth scrolling
+    const cleanup = setupScrollAnimation();
+    setupSmoothScroll();
+    
+    return cleanup;
   }, []);
 
   return (

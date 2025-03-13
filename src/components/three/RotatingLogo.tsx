@@ -38,7 +38,6 @@ const RotatingLogo = ({ position = [0, 0, 0] }: RotatingLogoProps) => {
           color="white"
           anchorX="center"
           anchorY="middle"
-          font="/fonts/Inter-Bold.woff"
         >
           N
         </Text>
@@ -51,7 +50,6 @@ const RotatingLogo = ({ position = [0, 0, 0] }: RotatingLogoProps) => {
         color="#ea384c"
         anchorX="center"
         anchorY="middle"
-        font="/fonts/Inter-Bold.woff"
       >
         NUEVANEX
       </Text>

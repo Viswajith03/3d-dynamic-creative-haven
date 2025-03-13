@@ -19,11 +19,8 @@ const Scene = ({ type = "hero" }: SceneProps) => {
           <directionalLight 
             position={[10, 10, 5]} 
             intensity={1} 
-            castShadow 
-            shadow-mapSize-width={1024} 
-            shadow-mapSize-height={1024} 
           />
-          <spotLight position={[-10, 10, 5]} intensity={0.8} castShadow />
+          <spotLight position={[-10, 10, 5]} intensity={0.8} />
           
           {type === "hero" ? (
             <RotatingLogo position={[0, 0, 0]} />
