@@ -1,11 +1,14 @@
 
+// This file is kept for backward compatibility with components not yet migrated to Framer Motion
+// Framer Motion's whileInView, variants, and AnimatePresence should now be preferred over this
+
 export const setupScrollAnimation = () => {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           // Add a slight delay based on the element's position
-          const delay = (entry.target as HTMLElement).dataset.delay || 0;
+          const delay = (entry.target as HTMLElement).dataset.delay || "0";
           setTimeout(() => {
             entry.target.classList.add("active");
           }, Number(delay));

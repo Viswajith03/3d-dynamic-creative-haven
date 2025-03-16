@@ -11,12 +11,12 @@ import ContactSection from "@/components/sections/ContactSection";
 import TeamSection from "@/components/sections/TeamSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import { ParticlesBackground } from "@/components/ui/particles-background";
-import { setupScrollAnimation, setupSmoothScroll } from "@/utils/scrollAnimation";
+import { setupSmoothScroll } from "@/utils/scrollAnimation";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Index = () => {
   useEffect(() => {
-    // Set up scroll animations and smooth scrolling
-    const cleanup = setupScrollAnimation();
+    // Set up smooth scrolling
     setupSmoothScroll();
     
     // Check if there's a hash in the URL and scroll to that section
@@ -29,28 +29,50 @@ const Index = () => {
         }, 500);
       }
     }
-    
-    return cleanup;
   }, []);
 
+  // Page transitions
+  const pageVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.5,
+        staggerChildren: 0.3 
+      } 
+    }
+  };
+
   return (
-    <div className="min-h-screen">
-      <Header />
-      <div className="fixed inset-0 -z-10 pointer-events-none">
-        <ParticlesBackground quantity={75} />
-      </div>
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <ServicesSection />
-        <TeamSection />
-        <TestimonialsSection />
-        <UniqueSection />
-        <CtaSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <AnimatePresence mode="wait">
+      <motion.div 
+        className="min-h-screen"
+        initial="hidden"
+        animate="visible"
+        variants={pageVariants}
+      >
+        <Header />
+        <motion.div 
+          className="fixed inset-0 -z-10 pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <ParticlesBackground quantity={75} />
+        </motion.div>
+        <main>
+          <HeroSection />
+          <AboutSection />
+          <ServicesSection />
+          <TeamSection />
+          <TestimonialsSection />
+          <UniqueSection />
+          <CtaSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
