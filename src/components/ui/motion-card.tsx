@@ -1,10 +1,10 @@
 
 import * as React from "react"
 import { motion } from "framer-motion"
-import { Card, CardProps } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { cardVariants } from "@/utils/animationVariants"
 
-export interface MotionCardProps extends CardProps {
+export interface MotionCardProps extends React.HTMLAttributes<HTMLDivElement> {
   delay?: number
   children: React.ReactNode
 }
