@@ -38,8 +38,9 @@ const CtaSection = () => {
       
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 relative inline-block">
             Ready to Transform Your Brand's Digital Presence?
+            <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-nuevanex-red"></span>
           </h2>
           <p className="text-lg text-white/90 mb-8">
             Let's collaborate to create innovative strategies and compelling campaigns
@@ -47,18 +48,22 @@ const CtaSection = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button 
-              className="bg-white text-nuevanex-red hover:bg-white/90 text-lg px-8 py-6 rounded-md"
+              className="bg-white text-nuevanex-red hover:bg-white/90 text-lg px-8 py-6 rounded-md relative overflow-hidden group transform transition-transform duration-300 hover:scale-105"
               onClick={handleConsultation}
             >
-              Get Free Consultation
+              <span className="relative z-10">Get Free Consultation</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-white to-white/80 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500"></span>
             </Button>
             <Button 
               variant="outline" 
-              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6 rounded-md"
+              className="border-nuevanex-red border-2 text-nuevanex-red hover:bg-nuevanex-red/10 text-lg px-8 py-6 rounded-md group transition-all duration-300 relative overflow-hidden"
               onClick={handleViewPortfolio}
             >
-              View Our Portfolio
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="relative z-10 flex items-center group-hover:text-white transition-colors duration-300">
+                View Our Portfolio
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+              <span className="absolute inset-0 bg-nuevanex-red transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </Button>
           </div>
         </div>

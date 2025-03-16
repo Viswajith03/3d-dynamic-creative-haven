@@ -77,11 +77,14 @@ const HeroSection = () => {
               </Button>
               <Button 
                 variant="outline" 
-                className="border-white text-white hover:bg-white/10 text-lg px-8 py-6 rounded-md group transition-all duration-300"
+                className="border-nuevanex-red border-2 text-nuevanex-red hover:bg-nuevanex-red/10 text-lg px-8 py-6 rounded-md group transition-all duration-300 relative overflow-hidden"
                 onClick={handleViewWorks}
               >
-                View Our Works
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                <span className="relative z-10 flex items-center group-hover:text-white transition-colors duration-300">
+                  View Our Works
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+                <span className="absolute inset-0 bg-nuevanex-red transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
               </Button>
             </div>
           </div>

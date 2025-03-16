@@ -8,6 +8,7 @@ import ServicesSection from "@/components/sections/ServicesSection";
 import UniqueSection from "@/components/sections/UniqueSection";
 import CtaSection from "@/components/sections/CtaSection";
 import ContactSection from "@/components/sections/ContactSection";
+import TeamSection from "@/components/sections/TeamSection";
 import { ParticlesBackground } from "@/components/ui/particles-background";
 import { setupScrollAnimation, setupSmoothScroll } from "@/utils/scrollAnimation";
 
@@ -51,6 +52,7 @@ const Index = () => {
         <HeroSection />
         <AboutSection />
         <ServicesSection />
+        <TeamSection />
         <PortfolioSection />
         <UniqueSection />
         <CtaSection />
