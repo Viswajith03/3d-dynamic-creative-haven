@@ -19,7 +19,7 @@ const teamMembers = [
     id: 2,
     name: "Hridik",
     role: "Design Head",
-    image: "public/lovable-uploads/hridik.png",
+    image: "/lovable-uploads/hridik.png",
     bio: "Creative genius with an eye for detail and aesthetics, transforming brand concepts into stunning visual experiences.",
     socialLinks: {
       linkedin: "#",
@@ -30,10 +30,10 @@ const teamMembers = [
     id: 3,
     name: "Viswajith",
     role: "Tech Head",
-    image: "/lovable-uploads/viswajith.jpg",
+    image: "/lovable-uploads/viswajith.png",
     bio: "Technology enthusiast with expertise in web development, digital platforms and implementing cutting-edge technical solutions.",
     socialLinks: {
-      linkedin: "#",
+      linkedin: "https://www.linkedin.com/in/nairviswajith/",
       email: "#",
     },
   },
