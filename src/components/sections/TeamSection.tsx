@@ -6,35 +6,35 @@ import { Linkedin, Mail, ArrowRight } from "lucide-react";
 const teamMembers = [
   {
     id: 1,
-    name: "Rahul Menon",
+    name: "Abhijith",
     role: "Founder & CEO",
-    image: "/lovable-uploads/ef98bd05-2680-4c57-af64-1e1ea385f9ca.png",
+    image: "/lovable-uploads/abhijith.png",
     bio: "Visionary leader with over 10 years of experience in digital marketing, specializing in innovative brand strategies and business growth.",
     socialLinks: {
       linkedin: "#",
-      email: "rahul@nuevanex.com",
+      email: "#",
     },
   },
   {
     id: 2,
-    name: "Aditya Krishnan",
+    name: "Hridik",
     role: "Design Head",
-    image: "/lovable-uploads/cfe8f518-f770-4540-a482-3270a7fafcad.png",
+    image: "public/lovable-uploads/hridik.png",
     bio: "Creative genius with an eye for detail and aesthetics, transforming brand concepts into stunning visual experiences.",
     socialLinks: {
       linkedin: "#",
-      email: "aditya@nuevanex.com",
+      email: "#",
     },
   },
   {
     id: 3,
-    name: "Vishnu Prasad",
+    name: "Viswajith",
     role: "Tech Head",
-    image: "/lovable-uploads/8c7fa74e-a72c-4697-aa38-f786566442d2.png",
+    image: "/lovable-uploads/viswajith.jpg",
     bio: "Technology enthusiast with expertise in web development, digital platforms and implementing cutting-edge technical solutions.",
     socialLinks: {
       linkedin: "#",
-      email: "vishnu@nuevanex.com",
+      email: "#",
     },
   },
 ];
