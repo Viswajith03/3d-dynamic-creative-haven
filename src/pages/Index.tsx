@@ -13,6 +13,7 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import { ParticlesBackground } from "@/components/ui/particles-background";
 import { setupSmoothScroll } from "@/utils/scrollAnimation";
 import { motion, AnimatePresence } from "framer-motion";
+import Scene from "@/components/three/Scene";
 
 const Index = () => {
   useEffect(() => {
@@ -64,6 +65,28 @@ const Index = () => {
           <HeroSection />
           <AboutSection />
           <ServicesSection />
+          {/* 3D Product Showcase Section */}
+          <section id="showcase" className="py-20 bg-gradient-to-br from-nuevanex-dark via-nuevanex-navy to-nuevanex-dark overflow-hidden">
+            <div className="container mx-auto px-4">
+              <motion.div 
+                className="text-center mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5 }}
+              >
+                <h2 className="section-title text-white mb-4">Interactive Experience</h2>
+                <p className="text-gray-300 max-w-2xl mx-auto">
+                  Explore our digital solutions through this interactive 3D experience. 
+                  Hover and click on elements to see them come to life.
+                </p>
+              </motion.div>
+              
+              <div className="h-[500px] w-full mb-12">
+                <Scene type="product" />
+              </div>
+            </div>
+          </section>
           <TeamSection />
           <TestimonialsSection />
           <UniqueSection />
