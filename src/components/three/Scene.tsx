@@ -1,48 +1,38 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { OrbitControls, PerspectiveCamera, Environment } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import FloatingShapes from "./FloatingShapes";
 import RotatingLogo from "./RotatingLogo";
-import ParallaxModel from "./ParallaxModel";
 
 type SceneProps = {
-  type?: "hero" | "background" | "product";
-  interactive?: boolean;
+  type?: "hero" | "background";
 };
 
-const Scene = ({ type = "hero", interactive = true }: SceneProps) => {
+const Scene = ({ type = "hero" }: SceneProps) => {
   return (
-    <div className="canvas-container w-full h-full">
-      <Canvas shadows dpr={[1, 2]}>
+    <div className="canvas-container">
+      <Canvas shadows>
         <Suspense fallback={null}>
           <PerspectiveCamera makeDefault position={[0, 0, 10]} />
           <ambientLight intensity={0.5} />
           <directionalLight 
             position={[10, 10, 5]} 
             intensity={1} 
-            castShadow
           />
-          <spotLight position={[-10, 10, 5]} intensity={0.8} castShadow />
+          <spotLight position={[-10, 10, 5]} intensity={0.8} />
           
-          {type === "hero" && (
-            <RotatingLogo position={[0, 0, 0]} interactive={interactive} />
+          {type === "hero" ? (
+            <RotatingLogo position={[0, 0, 0]} />
+          ) : (
+            <FloatingShapes count={15} />
           )}
           
-          {type === "background" && (
-            <FloatingShapes count={15} interactive={interactive} />
-          )}
-          
-          {type === "product" && (
-            <ParallaxModel interactive={interactive} />
-          )}
-          
-          <Environment preset="city" />
           <OrbitControls 
             enableZoom={false} 
             enablePan={false} 
-            enableRotate={interactive && type === "hero"}
-            autoRotate={type === "background" || (type === "product" && !interactive)}
+            enableRotate={type === "hero"}
+            autoRotate={type === "background"}
             autoRotateSpeed={0.5}
           />
         </Suspense>
