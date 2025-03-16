@@ -1,8 +1,8 @@
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Text, Box, useTexture } from "@react-three/drei";
-import { Group, MathUtils, Vector3 } from "three";
+import { Text, Box } from "@react-three/drei";
+import { MathUtils, Vector3 } from "three";
 import { motion } from "framer-motion-3d";
 import { useSpring } from "@react-spring/three";
 
@@ -12,7 +12,8 @@ interface RotatingLogoProps {
 }
 
 const RotatingLogo = ({ position = [0, 0, 0], interactive = true }: RotatingLogoProps) => {
-  const groupRef = useRef<Group>(null);
+  // Changed to use a more generic React ref, which works with motion.group
+  const groupRef = useRef<any>(null);
   const targetRotationY = useRef(0);
   const mouseXOnMouseDown = useRef(0);
   const [hovered, setHovered] = useState(false);

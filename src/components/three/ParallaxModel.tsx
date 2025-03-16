@@ -1,8 +1,8 @@
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useGLTF, Text, RoundedBox, MeshDistortMaterial } from "@react-three/drei";
-import { Group, MathUtils } from "three";
+import { Text, RoundedBox, MeshDistortMaterial } from "@react-three/drei";
+import { MathUtils } from "three";
 import { motion } from "framer-motion-3d";
 
 interface ParallaxModelProps {
@@ -10,7 +10,8 @@ interface ParallaxModelProps {
 }
 
 const ParallaxModel = ({ interactive = true }: ParallaxModelProps) => {
-  const groupRef = useRef<Group>(null);
+  // Changed to use a more generic React ref, which works with motion.group
+  const groupRef = useRef<any>(null);
   const { viewport, mouse } = useThree();
   const [hovered, setHovered] = useState(false);
   
