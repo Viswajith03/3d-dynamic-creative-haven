@@ -7,10 +7,17 @@ import { cardVariants } from "@/utils/animationVariants"
 export interface MotionCardProps extends React.HTMLAttributes<HTMLDivElement> {
   delay?: number
   children: React.ReactNode
+  perspective?: boolean
 }
 
 export const MotionCard = React.forwardRef<HTMLDivElement, MotionCardProps>(
-  ({ className, children, delay = 0, ...props }, ref) => {
+  ({ className, children, delay = 0, perspective = true, ...props }, ref) => {
+    // Enhanced 3D perspective effect for cards
+    const perspectiveAnimation = perspective ? {
+      perspective: "1200px",
+      transformStyle: "preserve-3d",
+    } : {};
+    
     return (
       <motion.div
         initial="hidden"
@@ -21,6 +28,7 @@ export const MotionCard = React.forwardRef<HTMLDivElement, MotionCardProps>(
         custom={delay}
         transition={{ delay: delay * 0.2 }}
         className="h-full"
+        style={perspectiveAnimation}
       >
         <Card
           className={className}
