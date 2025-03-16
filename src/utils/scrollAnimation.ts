@@ -5,10 +5,10 @@ export const setupScrollAnimation = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           // Add a slight delay based on the element's position
-          const delay = entry.target.dataset.delay || 0;
+          const delay = (entry.target as HTMLElement).dataset.delay || 0;
           setTimeout(() => {
             entry.target.classList.add("active");
-          }, delay);
+          }, Number(delay));
         }
       });
     },
@@ -19,7 +19,7 @@ export const setupScrollAnimation = () => {
   const revealElements = document.querySelectorAll(".reveal");
   revealElements.forEach((el, index) => {
     // Add data-delay based on index for staggered animations
-    el.setAttribute("data-delay", (index * 100).toString());
+    (el as HTMLElement).setAttribute("data-delay", (index * 100).toString());
     observer.observe(el);
   });
 
@@ -28,8 +28,8 @@ export const setupScrollAnimation = () => {
   const handleParallax = () => {
     parallaxElements.forEach((el) => {
       const scrollPosition = window.pageYOffset;
-      const speed = el.getAttribute("data-speed") || 0.5;
-      el.style.transform = `translateY(${scrollPosition * speed}px)`;
+      const speed = parseFloat((el as HTMLElement).getAttribute("data-speed") || "0.5");
+      (el as HTMLElement).style.transform = `translateY(${scrollPosition * speed}px)`;
     });
   };
   
@@ -41,7 +41,7 @@ export const setupScrollAnimation = () => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const animation = entry.target.getAttribute("data-animation") || "fade-in";
+          const animation = (entry.target as HTMLElement).getAttribute("data-animation") || "fade-in";
           entry.target.classList.add(animation);
           scrollObserver.unobserve(entry.target);
         }
@@ -83,11 +83,11 @@ export const setupSmoothScroll = () => {
           let start = null;
           
           // Easing function for smoother scroll
-          const easeInOutQuad = (t) => {
+          const easeInOutQuad = (t: number) => {
             return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
           };
           
-          const animation = (currentTime) => {
+          const animation = (currentTime: number) => {
             if (start === null) start = currentTime;
             const timeElapsed = currentTime - start;
             const progress = Math.min(timeElapsed / duration, 1);
