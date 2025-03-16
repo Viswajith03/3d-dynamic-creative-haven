@@ -12,19 +12,19 @@ const CtaSection = () => {
     console.log("CTA consultation button clicked");
   };
 
-  const handleViewPortfolio = () => {
-    // Scroll to portfolio section
-    const portfolioSection = document.getElementById("portfolio");
-    if (portfolioSection) {
-      portfolioSection.scrollIntoView({ behavior: "smooth" });
+  const handleViewTestimonials = () => {
+    // Scroll to testimonials section
+    const testimonialsSection = document.getElementById("testimonials");
+    if (testimonialsSection) {
+      testimonialsSection.scrollIntoView({ behavior: "smooth" });
     } else {
-      // If portfolio section doesn't exist yet, scroll to services as fallback
+      // If testimonials section doesn't exist yet, scroll to services as fallback
       const servicesSection = document.getElementById("services");
       if (servicesSection) {
         servicesSection.scrollIntoView({ behavior: "smooth" });
       }
     }
-    console.log("View portfolio button clicked");
+    console.log("View testimonials button clicked");
   };
 
   return (
@@ -57,10 +57,10 @@ const CtaSection = () => {
             <Button 
               variant="outline" 
               className="border-nuevanex-red border-2 text-nuevanex-red hover:bg-nuevanex-red/10 text-lg px-8 py-6 rounded-md group transition-all duration-300 relative overflow-hidden"
-              onClick={handleViewPortfolio}
+              onClick={handleViewTestimonials}
             >
               <span className="relative z-10 flex items-center group-hover:text-white transition-colors duration-300">
-                View Our Portfolio
+                View Success Stories
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
               <span className="absolute inset-0 bg-nuevanex-red transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>

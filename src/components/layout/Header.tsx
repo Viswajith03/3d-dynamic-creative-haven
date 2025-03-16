@@ -61,7 +61,7 @@ const Header = () => {
           {[
             { name: "About", id: "about" },
             { name: "Services", id: "services" }, 
-            { name: "Portfolio", id: "portfolio" }, 
+            { name: "Testimonials", id: "testimonials" }, 
             { name: "Contact", id: "contact" }
           ].map((item) => (
             <button 
@@ -102,7 +102,7 @@ const Header = () => {
             {[
               { name: "About", id: "about" },
               { name: "Services", id: "services" }, 
-              { name: "Portfolio", id: "portfolio" }, 
+              { name: "Testimonials", id: "testimonials" }, 
               { name: "Contact", id: "contact" }
             ].map((item) => (
               <button 

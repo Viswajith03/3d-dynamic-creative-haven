@@ -9,18 +9,9 @@ import UniqueSection from "@/components/sections/UniqueSection";
 import CtaSection from "@/components/sections/CtaSection";
 import ContactSection from "@/components/sections/ContactSection";
 import TeamSection from "@/components/sections/TeamSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import { ParticlesBackground } from "@/components/ui/particles-background";
 import { setupScrollAnimation, setupSmoothScroll } from "@/utils/scrollAnimation";
-
-// Create empty section for portfolio navigation (will be properly implemented later)
-const PortfolioSection = () => (
-  <section id="portfolio" className="py-20 bg-nuevanex-dark">
-    <div className="container mx-auto px-4">
-      <h2 className="section-title text-center mb-6 text-white">Our <span className="text-nuevanex-red">Portfolio</span></h2>
-      <p className="text-center mb-8 text-white/80">Coming soon! Our portfolio section is under development.</p>
-    </div>
-  </section>
-);
 
 const Index = () => {
   useEffect(() => {
@@ -53,7 +44,7 @@ const Index = () => {
         <AboutSection />
         <ServicesSection />
         <TeamSection />
-        <PortfolioSection />
+        <TestimonialsSection />
         <UniqueSection />
         <CtaSection />
         <ContactSection />
